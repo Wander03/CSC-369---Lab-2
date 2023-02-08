@@ -11,6 +11,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,15 +23,26 @@ public class DayBytes {
     public static final Class OUTPUT_VALUE_CLASS = IntWritable.class;
 
     public static class MapperImpl extends Mapper<LongWritable, Text, Text, IntWritable> {
-	private final IntWritable one = new IntWritable(1);
-    private DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss");
-
+	private final IntWritable bytes = new IntWritable();
+        private Text date = new Text();
+        private SimpleDateFormat dateForm = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
         @Override
-	protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] parts = value.toString().split(" ");
-            String dateStr = parts[3].substring(1);
-            String date = String.format(dateStr, dateFormat);
-            context.write(date, one);
+            try {
+                Date rawDate = dateForm.parse(parts[3].substring(1));
+                SimpleDateFormat dayForm = new SimpleDateFormat("dd");
+                SimpleDateFormat monForm = new SimpleDateFormat("MM");
+                SimpleDateFormat yearForm = new SimpleDateFormat("yyyy");
+                String day = dayForm.format(rawDate);
+                String month = monForm.format(rawDate);
+                String year = yearForm.format(rawDate);
+                date.set(year + "-" + month + "-" + day);
+                bytes.set(Integer.parseInt(parts[9]));
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            context.write(date, bytes);
         }
     }
 

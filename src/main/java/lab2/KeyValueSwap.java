@@ -28,7 +28,6 @@ public class KeyValueSwap {
         }
 
     public static class ReducerImpl extends Reducer<IntWritable, Text, IntWritable, Text> {
-        private IntWritable result = new IntWritable();
 
         protected void reduce(IntWritable count, Text path, Context context) throws IOException, InterruptedException {
             context.write(count, path);

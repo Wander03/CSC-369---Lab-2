@@ -49,6 +49,11 @@ public class HadoopApp {
 		job.setMapperClass(DateCount.MapperImpl.class);
 		job.setOutputKeyClass(DateCount.OUTPUT_KEY_CLASS);
 		job.setOutputValueClass(DateCount.OUTPUT_VALUE_CLASS);
+	} else if ("DayBytes".equalsIgnoreCase(otherArgs[0])) {
+		job.setReducerClass(DayBytes.ReducerImpl.class);
+		job.setMapperClass(DayBytes.MapperImpl.class);
+		job.setOutputKeyClass(DayBytes.OUTPUT_KEY_CLASS);
+		job.setOutputValueClass(DayBytes.OUTPUT_VALUE_CLASS);
 	} else {
 	    System.out.println("Unrecognized job: " + otherArgs[0]);
 	    System.exit(-1);
