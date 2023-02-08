@@ -1,10 +1,6 @@
-package csc369;
+package lab2;
 
 import java.io.IOException;
-
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
@@ -17,22 +13,22 @@ public class HadoopApp {
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
         Configuration conf = new Configuration();
-        Job job = new Job(conf, "Hadoop example");
+        Job job = new Job(conf, "Lab 2");
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
 	if (otherArgs.length < 3) {
 	    System.out.println("Expected parameters: <job class> <input dir> <output dir>");
 	    System.exit(-1);
-	} else if ("WordCount".equalsIgnoreCase(otherArgs[0])) {
-	    job.setReducerClass(WordCount.ReducerImpl.class);
-	    job.setMapperClass(WordCount.MapperImpl.class);
-	    job.setOutputKeyClass(WordCount.OUTPUT_KEY_CLASS);
-	    job.setOutputValueClass(WordCount.OUTPUT_VALUE_CLASS);
-	} else if ("AccessLog".equalsIgnoreCase(otherArgs[0])) {
-	    job.setReducerClass(AccessLog.ReducerImpl.class);
-	    job.setMapperClass(AccessLog.MapperImpl.class);
-	    job.setOutputKeyClass(AccessLog.OUTPUT_KEY_CLASS);
-	    job.setOutputValueClass(AccessLog.OUTPUT_VALUE_CLASS);
+	} else if ("URLCount".equalsIgnoreCase(otherArgs[0])) {
+	    job.setReducerClass(URLCount1.ReducerImpl.class);
+	    job.setMapperClass(URLCount1.MapperImpl.class);
+	    job.setOutputKeyClass(URLCount1.OUTPUT_KEY_CLASS);
+	    job.setOutputValueClass(URLCount1.OUTPUT_VALUE_CLASS);
+	} else if ("KeyValueSwap".equalsIgnoreCase(otherArgs[0])) {
+		job.setReducerClass(KeyValueSwap.ReducerImpl.class);
+		job.setMapperClass(KeyValueSwap.MapperImpl.class);
+		job.setOutputKeyClass(KeyValueSwap.OUTPUT_KEY_CLASS);
+		job.setOutputValueClass(KeyValueSwap.OUTPUT_VALUE_CLASS);
         } else if ("AccessLog2".equalsIgnoreCase(otherArgs[0])) {
 	    job.setReducerClass(AccessLog2.ReducerImpl.class);
 	    job.setMapperClass(AccessLog2.MapperImpl.class);
