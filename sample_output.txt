@@ -1,0 +1,72 @@
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+Program 1:
+> ./gradlew run --args="URLCount input_access_log/ out_urlc/part1"
+
+Output:
+/	31
+/AmavisNew.html	11
+/DCC.html	2
+/LateEmail.html	4
+/M83A	1
+
+> ./gradlew run --args="KeyValueSwap out_urlc/part1 out_urlc/part2"
+
+Output:
+1	/twiki/view/Main/WebHome
+1	/twiki/pub/TWiki/TWikiLogos/twikiRobot88x31.gif
+1	/twiki/pub/TWiki/TWikiLogos/twikiRobot131x64.gif
+1	/twiki/pub/TWiki/TWikiDocGraphics/tip.gif
+1	/twiki/bin/view/TWiki/d43
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+Program 2:
+> ./gradlew run --args="HTTPCount input_access_log/ out_httpc/"
+
+Output:
+200	1274
+302	6
+401	123
+404	5
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+Program 3:
+Hardcode address = "64.242.88.10"
+> ./gradlew run --args="SentBytesTotal input_access_log/ out_sbt/"
+
+Output:
+64.242.88.10	5745035
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+Program 4:
+Hardcode url = "/robots.txt"
+> ./gradlew run --args="ClientCount input_access_log/ out_scc/"
+
+Output:
+64.242.88.10	2
+cr020r01-3.sac.overture.com	1
+crawl24-public.alexa.com	1
+lj1007.inktomisearch.com	1
+lj1024.inktomisearch.com	8
+lj1036.inktomisearch.com	5
+lj1048.inktomisearch.com	5
+lj1052.inktomisearch.com	1
+mmscrm07-2.sac.overture.com	3
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+Program 5:
+> ./gradlew run --args="DateCount input_access_log/ out_datec/"
+
+Output:
+2003-03	1
+2004-03	1406
+2004-04	1
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+Program 6:
+> ./gradlew run --args="DayBytes input_access_log/ out_dbc/"
+
+Output:
+2003-03-12	7368
+2004-03-07	2427368
+2004-03-08	4617302
+2004-03-09	978411
+2004-03-10	1357604
+2004-03-11	1265093
+2004-03-12	287227
+2004-04-12	7368
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
